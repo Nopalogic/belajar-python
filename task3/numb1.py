@@ -32,10 +32,18 @@ else:
     grade = "A"
     bobot = 4.00
 
+if nilai >= 55.00:
+    status = "Lulus"
+else:
+    status = "Tidak lulus"
+
 print(f"""
-Nama: {nama}
-NIM: {nim}
-Semester: {smstr}
-Mata Kuliah: {matkul}
-Nilai: {nilai} | Grade: {grade} | Bobot Nilai: {bobot}
+Nama\t\t: {nama}
+NIM\t\t: {nim}
+Semester\t: {smstr}
+Mata Kuliah\t: {matkul}
+Nilai\t\t: {nilai}
+Status\t\t: {status}
+Grade\t\t: {grade}
+Indeks Prestasi\t: {bobot}
 """)
