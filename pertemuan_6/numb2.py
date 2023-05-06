@@ -48,18 +48,18 @@ while i < jumlahKaryawan:
 print("\n                                      DAFTAR GAJI KARYAWAN")
 print("                                             PT. BEYEGE")
 print(f" Bulan = {bulan}")
-print("+ ======================================================================================================== +")
-print("|  No  |  NIP Karywan  |  Nama Karyawan  |  Jabatan  |  Status  |  Gaji Pokok  |  Tunjugan  |  Total Gaji  |")
-print("+ ======================================================================================================== +")
+print("+ ============================================================================================================ +")
+print("|  No  |  NIP Karywan  |  Nama Karyawan  |    Jabatan    |  Status  |  Gaji Pokok  |  Tunjugan  |  Total Gaji  |")
+print("+ ============================================================================================================ +")
 
 for indeks, karyawan in enumerate(listKaryawan):
-    print(f"|  {indeks+1}  | {karyawan[0]} | {karyawan[1]} | {karyawan[2]} | {karyawan[3]} | {karyawan[4]} | {karyawan[5]} | {karyawan[6]}  |")
+    print("|  %i   |      %i      |     %s      |  %s  |  %s  |    %i   |   %i   |    %i   |" % (indeks+1, karyawan[0], karyawan[1], karyawan[2], karyawan[3], karyawan[4], karyawan[5], karyawan[6]))
 
 total = 0
 for karyawan in listKaryawan:
     total += karyawan[6]
 
-print("+ =========================================================================================================== +")
+print("+ ============================================================================================================ +")
 print(f"                                                                              Total Gaji Karyawan Rp.{total}")
 
 
