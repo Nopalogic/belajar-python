@@ -48,7 +48,7 @@ print("|  No  |  Jenis Potong   |  Harga Satuan   |  Banyak Beli   |  Jumlah Har
 print("+ ========================================================================== +")
 
 while a < banyak_jenis:
-    jumlah_bayar =  jumlah_bayar + jumlah[a]
+    jumlah_bayar += jumlah[a]
     print("|  %i  |       %s       |      %s      |        %i        |      %i      |" % (a+1, jenis_potong[a], harga[a], banyak_potong[a], jumlah[a]))
     a += 1
 
