@@ -16,13 +16,16 @@ cd = StringVar()
 kl = StringVar()
 rpl = StringVar()
 tekstotal = StringVar()
+teksDiskon = StringVar()
+teksPajak = StringVar()
+teksBiaya = StringVar()
 teksuang = StringVar()
 total = 0
 
 # buat function
 def totalbeli():
-    global ap, std, ksi, db, al, kwu, pk, cd,kl, rpl, tekstotal, total
-    hap = int(ap.get()) * 189000
+    global ap, std, ksi, db, al, kwu, pk, cd,kl, rpl, tekstotal, teksPajak, teksDiskon, total
+    hap = int(ap.get()) * 100000
     hstd = int(std.get()) * 165000
     hksi = int(ksi.get()) * 123000
     hdb = int(db.get()) * 119000
@@ -32,8 +35,26 @@ def totalbeli():
     hcd = int(cd.get()) * 135000
     hkl = int(kl.get()) * 234000
     hrpl = int(rpl.get()) * 460000
-    total = hap + hstd + hksi + hdb+hal+hkwu+hpk+hcd+hkl+hrpl
-    tekstotal.set(str(total))
+
+    total = hap + hstd + hksi + hdb + hal + hkwu + hpk + hcd + hkl + hrpl
+
+    if total >= 500000:
+        diskon = total * 5 / 100
+    elif total >= 1000000:
+        diskon = total * 10 / 100
+    else:
+        diskon = 0
+
+    tekstotal.set(str(int(total)))
+    
+    total -= diskon
+
+    pajak = total * 10 / 100
+    biaya = total + pajak
+
+    teksDiskon.set(str(int(diskon)))
+    teksPajak.set(str(int(pajak)))
+    teksBiaya.set(str(int(biaya)))
 
 def kembalian():
     global total
@@ -57,6 +78,9 @@ def clear():
         kl.set('0')
         rpl.set('0')
         tekstotal.set('0')
+        teksPajak.set('0')
+        teksDiskon.set('0')
+        teksBiaya.set('0')
         teksuang.set('0')
 
 
@@ -79,7 +103,7 @@ Label(app, text='9.  Kalkulus', bg='#0f0e17', foreground='#ff8906', font='Poppin
 Label(app, text='10. Rekayasa Genitika', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=100,y=460)
 
 # membuat label harga
-Label(app, text='Rp. 189000', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=100)
+Label(app, text='Rp. 100000', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=100)
 Label(app, text='Rp. 165000', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=140)
 Label(app, text='Rp. 123000', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=180)
 Label(app, text='Rp. 119000', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=220)
@@ -104,6 +128,10 @@ Spinbox(app, from_=0, to=100, width=4, font='Poppins 10', textvariable=rpl, comm
 
 # membuat label pembayaran
 Label(app, text='Masukan uang anda', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 ').place(x=100,y=540)
+Label(app, text='Jumlah', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 ').place(x=350,y=540)
+Label(app, text='Pajak', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 ').place(x=460,y=540)
+Label(app, text='diskon ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 ').place(x=555,y=540)
+Label(app, text='total ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 ').place(x=670,y=540)
 
 # membuat entry jumlah uang
 Entry(app, textvariable=teksuang).place(x=100,y=580)
@@ -112,11 +140,20 @@ Entry(app, textvariable=teksuang).place(x=100,y=580)
 Label(app, text='Rp. ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=350,y=580)
 Label(app, textvariable=tekstotal, bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=380,y=580)
 
+Label(app, text='Rp. ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=460,y=580)
+Label(app, textvariable=teksPajak, bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=490,y=580)
+
+Label(app, text='Rp. ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=555,y=580)
+Label(app, textvariable=teksDiskon, bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=585,y=580)
+
+Label(app, text='Rp. ', bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=670,y=580)
+Label(app, textvariable=teksBiaya, bg='#0f0e17', foreground='#ff8906', font='Poppins 12 bold').place(x=700,y=580)
+
 # membuat tombol
-Button(app, text='Total', foreground='white', bg='#36ae7c', width=10, command=kembalian).place(x=100,y=640)
+Button(app, text='Bayar', foreground='white', bg='#36ae7c', width=10, command=kembalian).place(x=100,y=640)
 Button(app, text='Clear', foreground='white', bg='#ff1e1e', width=10, command=clear).place(x=250,y=640)
 
 # footer text
-# Label(app, text='Created by Bias Yulisa Geni, S.Kom., M.Kom.', bg='#0f0e17', foreground='#ff8906', font='Poppins 10 ').place(x=300,y=700)
+Label(app, text='Created by Naufal Adhi Ramadhan', bg='#0f0e17', foreground='#ff8906', font='Poppins 10 ').place(x=300,y=680)
 
 app.mainloop() # menampilkan aplikasi
